@@ -11,10 +11,13 @@ datasource db {
 }
 
 model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
+    id        String   @id @default(cuid())
     createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
 
-    @@index([name])
+    updatedAt DateTime @updatedAt
+    authorId  String
+    content   String   @db.VarChar(255)
+    name      String   @db.VarChar(255)
+
+    @@index([authorId])
 }
